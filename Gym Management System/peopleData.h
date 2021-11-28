@@ -1,12 +1,12 @@
-
-#include "people.h"
+#include "ptRelation.h"
 
 using namespace std;
 
-class PeopleData {
+class peopleData {
 private:
-	vector<Member> member;
-	vector<Staff> staff;
+	vector<member> member;
+	vector<staff> staff;
 public:
 	void loadData();
+	void exportData();
 };

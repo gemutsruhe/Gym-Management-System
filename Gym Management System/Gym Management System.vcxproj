@@ -139,14 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="heath.cpp" />
-    <ClCompile Include="people.cpp" />
+    <ClCompile Include="date.cpp" />
+    <ClCompile Include="gym-management-system.cpp" />
+    <ClCompile Include="health.cpp" />
+    <ClCompile Include="member.cpp" />
     <ClCompile Include="peopleData.cpp" />
+    <ClCompile Include="ptRelation.cpp" />
+    <ClCompile Include="staff.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="date.h" />
     <ClInclude Include="health.h" />
+    <ClInclude Include="member.h" />
     <ClInclude Include="people.h" />
     <ClInclude Include="peopleData.h" />
+    <ClInclude Include="ptRelation.h" />
+    <ClInclude Include="staff.h" />
+    <ClInclude Include="trainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,7 +1,5 @@
+#pragma once
 #include <string>
-#include <time.h>
-#include <vector>
-#include <ctime>
 using namespace std;
 
 class date {
@@ -11,7 +9,8 @@ private:
 	int day;
 	int period;
 public:
-	Date(int, int, int, int);
+	//date();
+	date(string, int);
 	string getMembershipStart();
 	string getMembershipEnd();
 	int getRemainDay();

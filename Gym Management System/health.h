@@ -1,13 +1,15 @@
 #pragma once
 #include <vector>
+#include <string>
 using namespace std;
 class health {
 private:
 	float height;
-	vector<float> weight;
-	vector<float> muscle;
-	vector<float> fat;
+	float weight;
+	float muscle;
+	float fat;
 public:
 	float getBMI();
 	float getFatPercent();
+	string toString();
 };

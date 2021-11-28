@@ -2,49 +2,51 @@
 #include <time.h>
 #include <vector>
 #include "health.h"
+#include "date.h"
+
 using namespace std;
 
-class People {
+class people {
 protected:
 	string name;
 	string phone_num;
-public:
-	People(string, string);
 };
 
-class Member : People {
+class member : People {
 protected:
 	string id;
-	string membership_start;
-	string membership_end;
+	date membership;
 	int lockerNum;
 public:
-	Member(string, string, string, string, int);
+	member(string, string, string, string, string, int);
 	void extendMembership(int);
+	void changeLocker();
 };
 
-class Staff : People {
+class staff : People {
 protected:
 	int salary;
 };
 
-class PTMember : Member {
+class ptMember : Member {
 private:
 	int remainPT;
-	vector<string> trainDate;
+	vector<string> trainedDate;
 	Trainer personalTrainer;
 	health myData;
 public:
-	PTMember(int, vector<string>, Trainer, health);
+	ptMember(int, vector<string>, Trainer, health);
 	void updateHealth(health);
+	void changeTrainer();
+	void addTrainedDate(string);
+	void extendPT(int);
 };
 
-class Trainer : Staff {
+class trainer : public Staff {
 private:
 	vector<PTMember> chargePTMember;
 public:
-	void addPTMember(PTMember *);
 	void showSchedule();
-	void addPT(PTMember);
-	void deletePT(PTMember);
+	void addPTMember(PTMember);
+	void deletePTMember(PTMember);
 };

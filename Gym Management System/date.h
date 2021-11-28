@@ -4,11 +4,16 @@
 #include <ctime>
 using namespace std;
 
-class Date {
-protected:
-	CTime t1 = CTime::GetCurrentTime();
-	time_t start;
-	time_t end;
+class date {
+private:
+	int year;
+	int month;
+	int day;
+	int period;
 public:
-	Date(string);
+	Date(int, int, int, int);
+	string getMembershipStart();
+	string getMembershipEnd();
+	int getRemainDay();
+	void extendPeriod(int);
 };

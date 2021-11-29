@@ -4,7 +4,7 @@ void trainer::addPTMember(ptMember* newMember) {
 	this->chargePTMember.push_back(newMember);
 }
 
-void trainer::deletePTMember(string id) {
+void trainer::deletePTMember(std::string id) {
 	for (int i = 0; i < chargePTMember.size(); i++) {
 		if (chargePTMember[i]->getID() == id) {
 			chargePTMember.erase(chargePTMember.begin() + i);
@@ -13,27 +13,29 @@ void trainer::deletePTMember(string id) {
 	}
 }
 
-ptMember::ptMember(member *newPTMember, int, vector<string>, trainer *chargeTrainer, health *measure) {
+ptMember::ptMember(member *newPTMember, int, std::vector<std::string>, trainer *chargeTrainer, health *measure) {
 
 }
 
 
-string ptMember::toFile() {
-	string trainedDateStr;
+std::string ptMember::toFile() {
+	std::string trainedDateStr = "";
 	int i;
-	for (i = 0; i < trainedDate.size() - 1; i++) trainedDateStr = trainedDate[i] + ",";
+	for (i = 0; i < trainedDate.size() - 1; i++) trainedDateStr += trainedDate[i] + ",";
 	trainedDateStr += trainedDate[i];
-	for(i = 0; i < healthData.size() - 1; i++)
-	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + to_string(lockerNum) + " " + trainerID + " " + to_string(remainPT) + " " + trainedDateStr + " " + ;
+	std::string healthDataStr = "";
+	for(i = 0; i < healthData.size() - 1; i++) healthDataStr += healthData[i].toString() + ",";
+	healthDataStr += healthData[i].toString();
+	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(lockerNum) + " " + trainerID + " " + std::to_string(remainPT) + " " + trainedDateStr + " " + healthDataStr;
 }
 
 void ptMember::updateHealth(health recentData) {
 	healthData.push_back(recentData);
 }
 void changeTrainer();
-void addTrainedDate(string);
+void addTrainedDate(std::string);
 void extendPT(int);
 
-string ptMember::getID() {
+std::string ptMember::getID() {
 	return id;
 }

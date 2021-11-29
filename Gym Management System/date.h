@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-using namespace std;
 
 class date {
 private:
@@ -10,9 +9,9 @@ private:
 	int period;
 public:
 	//date();
-	date(string, int);
-	string getMembershipStart();
-	string getMembershipEnd();
+	date(std::string, int);
+	std::string getMembershipStart();
+	std::string getMembershipEnd();
 	int getRemainDay();
 	void extendPeriod(int);
 };

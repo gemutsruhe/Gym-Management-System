@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-using namespace std;
+
 class health {
 private:
 	float height;
@@ -11,5 +11,5 @@ private:
 public:
 	float getBMI();
 	float getFatPercent();
-	string toString();
+	std::string toString();
 };

@@ -7,6 +7,6 @@ float health::getFatPercent() {
 	return fat / weight * 100;
 }
 
-string health::toString() {
-	return to_string(height) + "/" + to_string(weight) + "/" + to_string(muscle) + "/" + to_string(fat);
+std::string health::toString() {
+	return std::to_string(height) + "/" + std::to_string(weight) + "/" + std::to_string(muscle) + "/" + std::to_string(fat);
 }

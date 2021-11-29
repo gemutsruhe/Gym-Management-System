@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-void peopleData::loadData() {
+bool peopleData::loadData() {
 	ifstream file;
 	file.open("memberData.txt");
 	if (file.is_open()) {
@@ -33,10 +33,11 @@ void peopleData::exportData() {
 	ofstream file;
 	file.open("memberData.txt", ios::out);
 	if (file.is_open()) {
-		for (int i = 0; i < member.size(); i++) file << member.output();
+		for (int i = 0; i < memberList.size(); i++) file << memberList[i].toFile() << endl;
 	}
-	for (int i = 0; i < staff.size(); i++) {
-
+	file.open("staffData.txt");
+	if(file.is_open()){
+		for (int i = 0; i < staffList.size(); i++) file << staffList[i].toFile() << endl;
 	}
 	staff;
 }

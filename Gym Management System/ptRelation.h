@@ -9,24 +9,25 @@ class trainer;
 class ptMember : member {
 private:
 	int remainPT;
-	vector<string> trainedDate;
-	string trainerID;
-	vector<health> healthData;
+	std::vector<std::string> trainedDate;
+	std::string trainerID;
+	std::vector<health> healthData;
 public:
-	ptMember(member *, int, vector<string>, trainer *, health *);
+	ptMember(member *, int, std::vector<std::string>, trainer *, health *);
 	void updateHealth(health);
 	void changeTrainer();
-	void addTrainedDate(string);
+	void addTrainedDate(std::string);
 	void extendPT(int);
-	string getID();
-	string toFile();
+	std::string getID();
+	virtual std::string toFile();
 };
 
 class trainer : public staff {
 private:
-	vector<ptMember *> chargePTMember;
+	std::vector<ptMember *> chargePTMember;
 public:
 	void showSchedule();
 	void addPTMember(ptMember*);
-	void deletePTMember(string);
+	void deletePTMember(std::string);
+	virtual std::string toFile();
 };

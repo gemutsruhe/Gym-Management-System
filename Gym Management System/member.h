@@ -4,13 +4,13 @@
 
 class member : public people {
 protected:
-	string id;
+	std::string id;
 	date *membership;
 	int lockerNum;
 public:
 	member();
-	member(string, string, string, string, int, int);
+	member(std::string, std::string, std::string, std::string, int, int);
 	void extendMembership(int);
 	void changeLocker(int);
-	string toFile();
+	virtual std::string toFile();
 };

@@ -8,6 +8,7 @@ private:
 	std::vector<trainer> trainerList;
 private:
 	void loadFile(std::string);
+	void exportFile(std::string);
 public:
 	bool loadData();
 	bool exportData();

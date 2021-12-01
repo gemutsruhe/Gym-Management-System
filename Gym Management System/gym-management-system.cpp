@@ -45,14 +45,14 @@ int main() {
 		{
 			int ptNum = 0;
 			float height = 0, weight = 0, muscle = 0, fat = 0;
-			string memberID(""), trainerID("");
+			string memberID = "", trainerID = "";
 			cout << "enter memberID : ";
 			cin >> memberID;
-			cout << "enter trainerID :";
+			cout << "enter trainerID : ";
 			cin >> trainerID;
 			cout << "enter training num : ";
 			cin >> ptNum;
-			cout << "enter height weight muscle fat";
+			cout << "enter height weight muscle fat : ";
 			cin >> height >> weight >> muscle >> fat;
 			data->memberToPT(memberID, trainerID, ptNum, new health(height, weight, muscle, fat));
 			break;
@@ -61,9 +61,9 @@ int main() {
 		{
 			string memberID = "";
 			float height = 0, weight = 0, muscle = 0, fat = 0;
-			cout << "enter ptMemberID :";
+			cout << "enter ptMemberID : ";
 			cin >> memberID;
-			cout << "enter height weight muscle fat";
+			cout << "enter height weight muscle fat : ";
 			cin >> height >> weight >> muscle >> fat;
 			data->addHealthData(memberID, new health(height, weight, muscle, fat));
 			break;

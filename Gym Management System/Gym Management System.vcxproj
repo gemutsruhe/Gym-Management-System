@@ -143,6 +143,7 @@
     <ClCompile Include="gym-management-system.cpp" />
     <ClCompile Include="health.cpp" />
     <ClCompile Include="member.cpp" />
+    <ClCompile Include="people.cpp" />
     <ClCompile Include="peopleData.cpp" />
     <ClCompile Include="ptRelation.cpp" />
     <ClCompile Include="staff.cpp" />

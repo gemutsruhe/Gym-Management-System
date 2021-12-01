@@ -11,19 +11,15 @@ bool peopleData::loadData() {
 	loadFile("staff.txt");
 	loadFile("trainer.txt");
 
+	return true;
 }
 
 bool peopleData::exportData() {
-	std::ofstream file;
-	file.open("memberData.txt", std::ios::out);
-	if (file.is_open()) {
-		for (int i = 0; i < memberList.size(); i++) file << memberList[i].toFile() << std::endl;
-	}
-	file.open("staffData.txt");
-	if(file.is_open()){
-		for (int i = 0; i < staffList.size(); i++) file << staffList[i].toFile() << std::endl;
-	}
-	staff;
+	exportFile("member.txt");
+	exportFile("ptMember.txt");
+	exportFile("staff.txt");
+	exportFile("trainer.txt");
+	return true;
 }
 
 void peopleData::addMember(std::string id, std::string name, std::string phone_num, std::string membership_start, int period, int lockerNum){
@@ -31,7 +27,6 @@ void peopleData::addMember(std::string id, std::string name, std::string phone_n
 	memberList.push_back(*newMember);
 }
 void peopleData::memberToPT(std::string id, std::string trainerID, int ptNum, health *healthData){
-
 	for(int i = 0; i < memberList.size(); i++){
 		if(memberList[i].getID() == id){
 
@@ -69,5 +64,13 @@ void peopleData::loadFile(std::string fileName){
 	else {
 		std::ofstream createFile;
 		createFile.open(fileName);
+	}
+}
+
+void peopleData::exportFile(std::string fileName) {
+	std::ofstream file;
+	file.open(fileName, std::ios::out);
+	if (file.is_open()) {
+		for (int i = 0; i < memberList.size(); i++) file << memberList[i].toFile() << std::endl;
 	}
 }

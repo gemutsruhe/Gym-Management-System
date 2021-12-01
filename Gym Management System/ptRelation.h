@@ -19,7 +19,7 @@ public:
 	void addTrainedDate(std::string);
 	void extendPT(int);
 	std::string getID();
-	virtual std::string toFile();
+	std::string toFile();
 };
 
 class trainer : public staff {
@@ -30,5 +30,5 @@ public:
 	void showSchedule();
 	void addPTMember(ptMember*);
 	void deletePTMember(std::string);
-	virtual std::string toFile();
+	std::string toFile();
 };

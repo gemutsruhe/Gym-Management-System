@@ -10,7 +10,7 @@ date::date(int year, int month, int day, int period){
 date::date(std::string membership_start, int period) {
     this->year = stoi(membership_start.substr(0, 4));
     this->month = stoi(membership_start.substr(5, 2));
-    this->day = stoi(membership_start.substr(7, 2));
+    this->day = stoi(membership_start.substr(8, 2));
     this->period = period;
 }
 std::string date::getMembershipStart(){

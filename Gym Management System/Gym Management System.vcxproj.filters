@@ -36,6 +36,9 @@
     <ClCompile Include="ptRelation.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="people.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="people.h">

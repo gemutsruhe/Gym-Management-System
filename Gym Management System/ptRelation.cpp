@@ -53,3 +53,7 @@ trainer::trainer(std::string name, std::string phone_num, int salary){
 	this->salary = salary;
 	this->chargePTMember;
 }
+
+std::string trainer::toFile() {
+	return "";
+}

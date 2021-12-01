@@ -13,4 +13,7 @@ public:
 	void extendMembership(int);
 	void changeLocker(int);
 	virtual std::string toFile();
+	std::string getID();
+	date *getMembership();
+	int getLockerNum();
 };

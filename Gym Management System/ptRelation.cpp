@@ -13,10 +13,15 @@ void trainer::deletePTMember(std::string id) {
 	}
 }
 
-ptMember::ptMember(member *newPTMember, int, std::vector<std::string>, trainer *chargeTrainer, health *measure) {
-
+ptMember::ptMember(member *convertMember, std::string trainerID, int ptNum, health *measure) {
+	this->id = convertMember->getID();
+	this->name = convertMember->getName();
+	this->phone_num = convertMember->getPhone_num();
+	this->membership = convertMember->getMembership();
+	this->remainPT = ptNum;
+	this->trainerID = trainerID;
+	this->healthData.push_back(*measure);
 }
-
 
 std::string ptMember::toFile() {
 	std::string trainedDateStr = "";
@@ -29,13 +34,22 @@ std::string ptMember::toFile() {
 	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(lockerNum) + " " + trainerID + " " + std::to_string(remainPT) + " " + trainedDateStr + " " + healthDataStr;
 }
 
-void ptMember::updateHealth(health recentData) {
-	healthData.push_back(recentData);
+void ptMember::addNewHealth(health *recentData) {
+	healthData.push_back(*recentData);
 }
-void changeTrainer();
+void ptMember::changeTrainer(std::string trainerID){
+	this->trainerID = trainerID;
+}
 void addTrainedDate(std::string);
 void extendPT(int);
 
 std::string ptMember::getID() {
 	return id;
+}
+
+trainer::trainer(std::string name, std::string phone_num, int salary){
+	this->name = name;
+	this->phone_num = phone_num;
+	this->salary = salary;
+	this->chargePTMember;
 }

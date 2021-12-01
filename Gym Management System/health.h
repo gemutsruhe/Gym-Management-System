@@ -9,6 +9,7 @@ private:
 	float muscle;
 	float fat;
 public:
+	health(float, float, float, float);
 	float getBMI();
 	float getFatPercent();
 	std::string toString();

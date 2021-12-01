@@ -13,9 +13,9 @@ private:
 	std::string trainerID;
 	std::vector<health> healthData;
 public:
-	ptMember(member *, int, std::vector<std::string>, trainer *, health *);
-	void updateHealth(health);
-	void changeTrainer();
+	ptMember(member *, std::string, int, health *);
+	void addNewHealth(health *);
+	void changeTrainer(std::string);
 	void addTrainedDate(std::string);
 	void extendPT(int);
 	std::string getID();
@@ -26,6 +26,7 @@ class trainer : public staff {
 private:
 	std::vector<ptMember *> chargePTMember;
 public:
+	trainer(std::string, std::string, int);
 	void showSchedule();
 	void addPTMember(ptMember*);
 	void deletePTMember(std::string);

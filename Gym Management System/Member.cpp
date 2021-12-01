@@ -9,7 +9,7 @@ member::member() {
 	this->lockerNum = 0;
 }
 
-member::member(string id, string name, string phone_num, string membership_start, int period, int lockerNum) {
+member::member(std::string id, std::string name, std::string phone_num, std::string membership_start, int period, int lockerNum) {
 	this->id = id;
 	this->name = name;
 	this->phone_num = phone_num;
@@ -24,6 +24,14 @@ void member::changeLocker(int lockerNum) {
 	this->lockerNum = lockerNum;
 }
 
-string member::toFile() {
-	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + to_string(lockerNum);
+std::string member::toFile() {
+	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(lockerNum);
+}
+
+std::string member::getID(){
+	return id;
+}
+
+date *member::getMembership(){
+	return membership;
 }

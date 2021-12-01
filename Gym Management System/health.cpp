@@ -1,5 +1,12 @@
 #include "health.h"
 
+health::health(float height, float weight, float muscle, float fat){
+	this->height = height;
+	this-> weight = weight;
+	this->muscle = muscle;
+	this->fat = fat;
+}
+
 float health::getBMI() {
 	return weight / (height / 100 * height / 100);
 }

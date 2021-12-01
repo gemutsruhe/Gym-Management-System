@@ -4,9 +4,9 @@ using namespace std;
 
 class peopleData {
 private:
-	vector<member> member;
-	vector<staff> staff;
+	vector<member> memberList;
+	vector<staff> staffList;
 public:
-	void loadData();
+	bool loadData();
 	void exportData();
 };

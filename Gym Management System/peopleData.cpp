@@ -6,19 +6,77 @@
 
 bool peopleData::loadData() {
 	
-	loadFile("member.txt");
-	loadFile("ptMember.txt");
-	loadFile("staff.txt");
-	loadFile("trainer.txt");
+	std::string fileName = "member.txt";
+	std::ifstream file;
+
+	file.open(fileName);
+	if (file.is_open()) {
+		while (!file.eof()) {
+			std::string line;
+			getline(file, line);
+			
+		}
+	}
+	else {
+		std::ofstream createFile;
+		createFile.open(fileName);
+		createFile.close();
+	}
+	file.close();
+
+	fileName = "ptMember.txt";
+	file.open(fileName);
+	if (file.is_open()) {
+		while (!file.eof()) {
+			std::string line;
+			getline(file, line);
+		}
+	}
+	else {
+		std::ofstream createFile;
+		createFile.open(fileName);
+		createFile.close();
+	}
+	file.close();
+
+	fileName = "staff.txt";
+	file.open(fileName);
+	if (file.is_open()) {
+		while (!file.eof()) {
+			std::string line;
+			getline(file, line);
+		}
+	}
+	else {
+		std::ofstream createFile;
+		createFile.open(fileName);
+		createFile.close();
+	}
+	file.close();
+
+	fileName = "trainer.txt";
+	file.open(fileName);
+	if (file.is_open()) {
+		while (!file.eof()) {
+			std::string line;
+			getline(file, line);
+		}
+	}
+	else {
+		std::ofstream createFile;
+		createFile.open(fileName);
+		createFile.close();
+	}
+	file.close();
 
 	return true;
 }
 
 bool peopleData::exportData() {
-	exportFile("member.txt");
-	exportFile("ptMember.txt");
-	exportFile("staff.txt");
-	exportFile("trainer.txt");
+	exportFile("member.txt", memberList);
+	exportFile("ptMember.txt", ptMemberList);
+	exportFile("staff.txt", staffList);
+	exportFile("trainer.txt", trainerList);
 	return true;
 }
 
@@ -52,13 +110,15 @@ void peopleData::addHealthData(std::string memberID, health *newHealthData){
 	}
 }
 
-void peopleData::loadFile(std::string fileName){
+void peopleData::loadFile(std::string fileName, std::vector<people> peopleList){
 	std::ifstream file;
+	if(fileName == "member.txt") 
 	file.open(fileName);
 	if (file.is_open()) {
 		while (!file.eof()) {
 			std::string line;
 			getline(file, line);
+			
 		}
 	}
 	else {
@@ -67,7 +127,7 @@ void peopleData::loadFile(std::string fileName){
 	}
 }
 
-void peopleData::exportFile(std::string fileName) {
+void peopleData::exportFile(std::string fileName, std::vector<people> peopleList) {
 	std::ofstream file;
 	file.open(fileName, std::ios::out);
 	if (file.is_open()) {

@@ -2,13 +2,14 @@
 
 class peopleData {
 private:
-	std::vector<member> memberList;
-	std::vector<ptMember> ptMemberList;
-	std::vector<staff> staffList;
-	std::vector<trainer> trainerList;
+	std::vector<people> memberList;
+	std::vector<people> ptMemberList;
+	std::vector<people> staffList;
+	std::vector<people> trainerList;
 private:
-	void loadFile(std::string);
-	void exportFile(std::string);
+	void loadFile(std::string, std::vector<member>);
+	void loadFile(std::string, std::vector<staff>);
+	void exportFile(std::string, std::vector<people>);
 public:
 	bool loadData();
 	bool exportData();

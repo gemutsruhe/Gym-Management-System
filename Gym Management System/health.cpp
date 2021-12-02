@@ -2,7 +2,7 @@
 
 health::health(float height, float weight, float muscle, float fat){
 	this->height = height;
-	this-> weight = weight;
+	this->weight = weight;
 	this->muscle = muscle;
 	this->fat = fat;
 }

@@ -8,22 +8,22 @@ date::date(int year, int month, int day, int period){
 }
 */
 date::date(std::string membership_start, int period) {
-    this->year = stoi(membership_start.substr(0, 4));
-    this->month = stoi(membership_start.substr(5, 2));
-    this->day = stoi(membership_start.substr(8, 2));
+    this->year = membership_start.substr(0, 4);
+    this->month = membership_start.substr(5, 2);
+    this->day = membership_start.substr(8, 2);
     this->period = period;
 }
 std::string date::getMembershipStart(){
-    std::string date(std::to_string(year) + "-" + std::to_string(month) + "-" + std::to_string(day));
+    std::string date(year + "-" +month + "-" + day + ",");
     return date;
 }
 
 
 std::string date::getMembershipEnd(){
     int duration = 30 * this->period;
-    int endYear = this->year;
-    int endMonth = this->month;
-    int endDay = this->day;
+    int endYear = stoi(this->year);
+    int endMonth = stoi(this->month);
+    int endDay = stoi(this->day);
     int dayOfMonth[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
     
     while(duration >= 1){
@@ -40,7 +40,7 @@ std::string date::getMembershipEnd(){
             endDay = 0;
         }
     }
-    std::string date(std::to_string(endYear) + '-' + std::to_string(endMonth) + '-' + std::to_string(day));
+    std::string date(std::to_string(endYear) + "-" + std::to_string(endMonth) + "-" + std::to_string(endDay));
     return date;
 }
 
@@ -50,4 +50,8 @@ void date::extendPeriod(int month){
 int date::getRemainDay(){
     int duration = 3 * this->period;
     return duration;
+}
+
+int date::getPeriod(){
+    return this->period;
 }

@@ -8,4 +8,6 @@ protected:
 public:
 	std::string getName();
 	std::string getPhone_num();
+	virtual std::string dataToString();
+	virtual people *parseString(std::string);
 };

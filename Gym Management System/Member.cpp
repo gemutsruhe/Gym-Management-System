@@ -24,8 +24,20 @@ void member::changeLocker(int lockerNum) {
 	this->lockerNum = lockerNum;
 }
 
-std::string member::toFile() {
-	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(lockerNum);
+virtual std::string member::dataToString() {
+	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(membership->getPeriod()) + " " + std::to_string(lockerNum);
+}
+
+virtual member *parseString(std::string dataString){
+	int substrStart = 0;
+	vector<std::string> split;
+	for(int i = 0; i < dataString.size(); i++){
+		if(dataString[i] == " "){
+			split.push_back(dataString.substr(substrStart,i - substrStart));
+			i = substrStart;
+		}
+	}
+	return new member(split[0],split[1],split[2],split[3],Integer.parseInt(split[4]),Integer.parseInt(split[5]));
 }
 
 std::string member::getID(){

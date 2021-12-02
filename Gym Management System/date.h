@@ -3,15 +3,15 @@
 
 class date {
 private:
-	int year;
-	int month;
-	int day;
+	std::string year;
+	std::string month;
+	std::string day;
 	int period;
 public:
-	//date();
 	date(std::string, int);
 	std::string getMembershipStart();
 	std::string getMembershipEnd();
 	int getRemainDay();
 	void extendPeriod(int);
+	int getPeriod();
 };

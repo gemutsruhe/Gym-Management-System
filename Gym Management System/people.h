@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include <vector>
 class people {
 protected:
 	std::string name;
@@ -8,6 +8,7 @@ protected:
 public:
 	std::string getName();
 	std::string getPhone_num();
-	virtual std::string dataToString();
+	static std::string dataToString();
 	virtual people *parseString(std::string);
+	std::vector<std::string> split(std::string, char);
 };

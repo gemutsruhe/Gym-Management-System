@@ -5,7 +5,7 @@ member::member() {
 	this->id = "";
 	this->name = "";
 	this->phone_num = "";
-	this->membership = new date("", 0);
+	this->membership = new date("1900-01-01", 0);
 	this->lockerNum = 0;
 }
 
@@ -24,20 +24,15 @@ void member::changeLocker(int lockerNum) {
 	this->lockerNum = lockerNum;
 }
 
-virtual std::string member::dataToString() {
+std::string member::dataToString() {
 	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(membership->getPeriod()) + " " + std::to_string(lockerNum);
 }
 
-virtual member *parseString(std::string dataString){
+people *member::parseString(std::string dataString) {
 	int substrStart = 0;
-	vector<std::string> split;
-	for(int i = 0; i < dataString.size(); i++){
-		if(dataString[i] == " "){
-			split.push_back(dataString.substr(substrStart,i - substrStart));
-			i = substrStart;
-		}
-	}
-	return new member(split[0],split[1],split[2],split[3],Integer.parseInt(split[4]),Integer.parseInt(split[5]));
+	int i, j = 0;
+	std::vector<std::string> split = (new people())->split(dataString, ' ');
+	return new member(split[0], split[1], split[2], split[3], std::stoi(split[4]),std::stoi(split[5]));
 }
 
 std::string member::getID(){
@@ -46,4 +41,8 @@ std::string member::getID(){
 
 date *member::getMembership(){
 	return membership;
+}
+
+int member::getLockerNum() {
+	return lockerNum;
 }

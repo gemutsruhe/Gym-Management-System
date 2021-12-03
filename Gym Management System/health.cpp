@@ -1,4 +1,25 @@
 #include "health.h"
+#include <sstream>
+
+#define STRING(num) STR(num)
+#define STR(num) #num
+
+health::health(std::string data) {
+	std::vector<std::string> splitString;
+	int i, j = 0, substrStart = 0;
+	for (i = 0; i < data.size(); i++) {
+		if (data[i] == '-') {
+			splitString.push_back(data.substr(substrStart, i - substrStart));
+			substrStart = i + 1;
+			j++;
+		}
+	}
+	splitString.push_back(data.substr(substrStart, i - substrStart));
+	this->height = std::stof(splitString[0]);
+	this->weight = std::stof(splitString[1]);
+	this->muscle = std::stof(splitString[2]);
+	this->fat = std::stof(splitString[3]);
+}
 
 health::health(float height, float weight, float muscle, float fat){
 	this->height = height;
@@ -15,5 +36,7 @@ float health::getFatPercent() {
 }
 
 std::string health::toString() {
-	return std::to_string(height) + "/" + std::to_string(weight) + "/" + std::to_string(muscle) + "/" + std::to_string(fat);
+	std::ostringstream buffer;
+	buffer << height << "-" << weight << "-" << muscle << "-" << fat;
+	return buffer.str();
 }

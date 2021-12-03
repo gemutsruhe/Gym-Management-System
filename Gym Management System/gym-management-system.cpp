@@ -11,8 +11,8 @@ int main() {
 		cout << "1. regist new member" << endl;
 		cout << "2. convert member to ptMember" << endl;
 		cout << "3. insert new healthData" << endl;
-		cout << "regist new staff" << endl;
-		cout << "regist new trainer" << endl;
+		cout << "4. regist new staff" << endl;
+		cout << "5. regist new trainer" << endl;
 		cout << "if input 0, save, exit" << endl;
 		
 		cin >> input;
@@ -70,7 +70,15 @@ int main() {
 		}
 		case 4:
 		{
-			data->addStaff();
+			string name, phone_num;
+			int salary = 0;
+			cout << "enter name : ";
+			cin >> name;
+			cout << "enter phone number : ";
+			cin >> phone_num;
+			cout << "enter phone number : ";
+			cin >> salary;
+			data->addStaff(name,phone_num,salary);
 			break;
 		}
 		case 5:
@@ -88,6 +96,11 @@ int main() {
 		}
 		case 6:
 		{
+			vector<people*> ptMemberList = data->getPTMemberList();
+			for (int i = 0; i < ptMemberList.size(); i++) {
+				cout << ((ptMember*)ptMemberList[i])->dataToString() << endl;
+			}
+			
 			break;
 		}
 		}

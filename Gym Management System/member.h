@@ -13,7 +13,7 @@ public:
 	void extendMembership(int);
 	void changeLocker(int);
 	virtual std::string dataToString();
-	virtual people *parseString(std::string);
+	virtual people* parseString(std::string);
 	std::string getID();
 	date *getMembership();
 	int getLockerNum();

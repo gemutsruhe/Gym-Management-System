@@ -1,12 +1,5 @@
 #include "date.h"
-/*
-date::date(int year, int month, int day, int period){
-    this->year = year;
-    this->month = month;
-    this->day = day;
-    this->period = period;
-}
-*/
+
 date::date(std::string membership_start, int period) {
     this->year = membership_start.substr(0, 4);
     this->month = membership_start.substr(5, 2);
@@ -14,10 +7,13 @@ date::date(std::string membership_start, int period) {
     this->period = period;
 }
 std::string date::getMembershipStart(){
-    std::string date(year + "-" +month + "-" + day + ",");
+    std::string date(year + "-" + month + "-" + day);
     return date;
 }
 
+int date::getPeriod() {
+    return this->period;
+}
 
 std::string date::getMembershipEnd(){
     int duration = 30 * this->period;
@@ -50,8 +46,4 @@ void date::extendPeriod(int month){
 int date::getRemainDay(){
     int duration = 3 * this->period;
     return duration;
-}
-
-int date::getPeriod(){
-    return this->period;
 }

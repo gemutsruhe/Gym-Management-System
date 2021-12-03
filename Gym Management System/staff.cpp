@@ -4,26 +4,19 @@ staff::staff() {
 
 }
 
-staff::staff(std::string name, std::string phone_num, int salary) {
+staff::staff(std::string id, std::string name, std::string phone_num, int salary) {
+	this->id = id;
 	this->name = name;
 	this->phone_num = phone_num;
 	this->salary = salary;
 }
 
 std::string staff::dataToString(){
-    return name + " " + phone_num + " " + std::to_string(salary);
+    return id + " " + name + " " + phone_num + " " + std::to_string(salary);
 }
 
 people *staff::parseString(std::string dataString){
     int substrStart = 0;
-	std::string split[3];
-	int j = 0;
-	for(int i = 0; i < dataString.size(); i++){
-		if(dataString[i] == ' ') {
-			split[j] = dataString.substr(substrStart,i - substrStart);
-			i = substrStart;
-			j++;
-		}
-	}
-	return new staff(split[0], split[1], stoi(split[2]));
+	std::vector<std::string> split = (new people())->split(dataString, ' ');
+	return new staff(split[0], split[1], split[2], stoi(split[3]));
 }

@@ -4,7 +4,6 @@
 
 class member : public people {
 protected:
-	std::string id;
 	date *membership;
 	int lockerNum;
 public:
@@ -14,7 +13,6 @@ public:
 	void changeLocker(int);
 	virtual std::string dataToString();
 	virtual people* parseString(std::string);
-	std::string getID();
 	date *getMembership();
 	int getLockerNum();
 };

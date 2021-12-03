@@ -1,5 +1,9 @@
 #include "people.h"
 
+std::string people::getID() {
+	return id;
+}
+
 std::string people::getName(){
     return name;
 }
@@ -19,6 +23,7 @@ people* people::parseString(std::string data) {
 std::vector<std::string> people::split(std::string data, char e) {
 	std::vector<std::string> splitString;
 	int i, j = 0, substrStart = 0;
+	if (data.size() == 0) return splitString;
 	for (i = 0; i < data.size(); i++) {
 		if (data[i] == e) {
 			splitString.push_back(data.substr(substrStart, i - substrStart));

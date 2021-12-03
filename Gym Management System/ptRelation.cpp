@@ -1,5 +1,4 @@
 #include "ptRelation.h"
-#include <iostream>
 
 ptMember::ptMember() {
 
@@ -12,6 +11,7 @@ ptMember::ptMember(member *convertMember, std::string trainerID, int ptNum, heal
 	this->membership = convertMember->getMembership();
 	this->lockerNum = convertMember->getLockerNum();
 	this->remainPT = ptNum;
+	this->trainedDate = *(new std::vector<std::string>());
 	this->trainerID = trainerID;
 	this->healthData.push_back(measure);
 }
@@ -33,6 +33,7 @@ std::string ptMember::trainedDateToString() {
 	for (int i = 0; i < trainedDate.size(); i++) {
 		if (i == trainedDate.size() - 1) {
 			trainedStr += trainedDate[i];
+
 			break;
 		}
 		trainedStr += trainedDate[i] + ",";
@@ -71,14 +72,16 @@ people *ptMember::parseString(std::string dataString) {
 void ptMember::addNewHealth(health *recentData) {
 	healthData.push_back(recentData);
 }
+
 void ptMember::changeTrainer(std::string trainerID){
 	this->trainerID = trainerID;
 }
-void addTrainedDate(std::string) {
 
+void ptMember::addTrainedDate(std::string trained) {
+	trainedDate.push_back(trained);
 }
 
-void extendPT(int) {
+void ptMember::extendPT(int) {
 
 }
 
@@ -90,7 +93,8 @@ trainer::trainer() {
 
 }
 
-trainer::trainer(std::string name, std::string phone_num, int salary, std::vector<std::string> chargePTMember){
+trainer::trainer(std::string id, std::string name, std::string phone_num, int salary, std::vector<std::string> chargePTMember){
+	this->id = id;
 	this->name = name;
 	this->phone_num = phone_num;
 	this->salary = salary;
@@ -117,12 +121,12 @@ std::string trainer::dataToString() {
 		ptMemberString += chargePTMember[i] + ",";
 	}
 	ptMemberString += chargePTMember[i];
-	return name + " " + phone_num + " " + std::to_string(salary) + " " + ptMemberString;
+	return id + " " + name + " " + phone_num + " " + std::to_string(salary) + " " + ptMemberString;
 }
 
 people* trainer::parseString(std::string dataString) {
 	std::vector<std::string> split = (new member())->split(dataString, ' ');
-	std::vector<std::string> ptMemberList = (new member())->split(split[3], ',');
-	return new trainer(split[0], split[1], std::stoi(split[2]), ptMemberList);
+	std::vector<std::string> ptMemberList = (new member())->split(split[4], ',');
+	return new trainer(split[0], split[1], split[2], std::stoi(split[3]), ptMemberList);
 }
 

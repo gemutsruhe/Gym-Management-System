@@ -34,7 +34,7 @@ private:
 	std::vector<std::string> chargePTMember;
 public:
 	trainer();
-	trainer(std::string, std::string, int, std::vector<std::string>);
+	trainer(std::string id, std::string, std::string, int, std::vector<std::string>);
 	void addPTMember(std::string);
 	void deletePTMember(std::string);
 

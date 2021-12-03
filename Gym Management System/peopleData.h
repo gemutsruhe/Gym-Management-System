@@ -15,8 +15,10 @@ public:
 	bool exportData();
 	void addMember(std::string, std::string, std::string, std::string, int, int);
 	void memberToPT(std::string, std::string, int, health *);
-	void addStaff(std::string,std::string,int);
-	void addTrainer(std::string, std::string, int);
+	void addStaff(std::string, std::string, std::string, int);
+	void addTrainer(std::string, std::string, std::string, int);
 	void addHealthData(std::string, health *);
+	void addTrainedDate(std::string, std::string);
+	void chargeMember(std::string, std::string);
 	std::vector<people *> getPTMemberList();
 };

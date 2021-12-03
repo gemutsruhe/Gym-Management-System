@@ -30,13 +30,8 @@ std::string member::dataToString() {
 
 people *member::parseString(std::string dataString) {
 	int substrStart = 0;
-	int i, j = 0;
 	std::vector<std::string> split = (new people())->split(dataString, ' ');
 	return new member(split[0], split[1], split[2], split[3], std::stoi(split[4]),std::stoi(split[5]));
-}
-
-std::string member::getID(){
-	return id;
 }
 
 date *member::getMembership(){

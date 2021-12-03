@@ -3,9 +3,11 @@
 #include <vector>
 class people {
 protected:
+	std::string id;
 	std::string name;
 	std::string phone_num;
 public:
+	std::string getID();
 	std::string getName();
 	std::string getPhone_num();
 	static std::string dataToString();

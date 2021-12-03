@@ -3,7 +3,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "iostream"
+
 peopleData::peopleData() {
 
 }
@@ -30,7 +30,6 @@ void peopleData::loadFile(std::string fileName) {
 }
 
 bool peopleData::loadData() {
-	
 	loadFile("member.txt");
 	loadFile("ptMember.txt");
 	loadFile("staff.txt");
@@ -53,7 +52,7 @@ void peopleData::addMember(std::string id, std::string name, std::string phone_n
 
 void peopleData::memberToPT(std::string id, std::string trainerID, int ptNum, health *healthData){
 	for(int i = 0; i < memberList.size(); i++){
-		if(((member *)memberList[i])->getID() == id){
+		if((memberList[i])->getID() == id){
 			ptMemberList.push_back(new ptMember(((member*)memberList[i]), trainerID, ptNum, healthData));
 			memberList.erase(memberList.begin() + i);
 			break;
@@ -61,23 +60,30 @@ void peopleData::memberToPT(std::string id, std::string trainerID, int ptNum, he
 	}
 }
 
-void peopleData::addStaff(std::string name, std::string phone_num, int salary){
-	staffList.push_back(new staff(name, phone_num, salary));
+void peopleData::addStaff(std::string id, std::string name, std::string phone_num, int salary){
+	staffList.push_back(new staff(id, name, phone_num, salary));
 }
 
-void peopleData::addTrainer(std::string name, std::string phone_num, int salary){
-	trainer *newTrainer = new trainer(name, phone_num, salary, *(new std::vector<std::string>));
+void peopleData::addTrainer(std::string id, std::string name, std::string phone_num, int salary){
+	trainer *newTrainer = new trainer(id, name, phone_num, salary, *(new std::vector<std::string>));
 	trainerList.push_back(newTrainer);
 }
 
-void peopleData::addHealthData(std::string memberID, health *newHealthData){
-	for(int i = 0; i < memberList.size(); i++){
-		if(((member *)memberList[i])->getID() == "memberID"){
-			
+void peopleData::addHealthData(std::string ptMemberID, health *newHealthData){
+	for(int i = 0; i < ptMemberList.size(); i++){
+		if((ptMemberList[i])->getID() == ptMemberID){
+			((ptMember*)ptMemberList[i])->addNewHealth(newHealthData);
 		}
 	}
 }
 
+void peopleData::addTrainedDate(std::string ptMemberID, std::string trainedDate) {
+	for (int i = 0; i < ptMemberList.size(); i++) {
+		if ((ptMemberList[i])->getID() == ptMemberID) {
+			((ptMember*)ptMemberList[i])->addTrainedDate(trainedDate);
+		}
+	}
+}
 
 void peopleData::exportFile(std::string fileName, std::vector<people *> peopleList) {
 	std::ofstream file;
@@ -95,4 +101,10 @@ void peopleData::exportFile(std::string fileName, std::vector<people *> peopleLi
 
 std::vector<people *> peopleData::getPTMemberList() {
 	return ptMemberList;
+}
+
+void peopleData::chargeMember(std::string trainerID, std::string ptMemberID) {
+	for (int i = 0; i < trainerList.size(); i++) {
+		if (trainerList[i]->getID() == trainerID) ((trainer*)trainerList[i])->addPTMember(ptMemberID);
+	}
 }

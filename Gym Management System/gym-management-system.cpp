@@ -13,7 +13,12 @@ int main() {
 		cout << "3. regist new staff" << endl;
 		cout << "4. regist new trainer" << endl;
 		cout << "5. insert new healthData" << endl;
-		cout << "6. insert trained Date" << endl;
+		cout << "6. insert trained date" << endl;
+		cout << "7. show membership end date" << endl;
+		cout << "8. show trainer list" << endl;
+		cout << "9. show ptMember List" << endl;
+		cout << "10. transfer membership" << endl;
+		//cout << 
 		cout << "if input 0, save, exit" << endl;
 		
 		cin >> input;
@@ -108,14 +113,45 @@ int main() {
 			cout << "enter date : ";
 			cin >> trainedDate;
 			data->addTrainedDate(id, trainedDate);
+			break;
+		}
+		case 7:
+		{
+			string id;
+			cout << "enter member id : ";
+			cin >> id;
+			cout << data->getMembershipEnd(id) << endl;
+			break;
+		}
+		case 8:
+		{
+			vector<string> trainerList = data->getTrainerData();
+			for (int i = 0; i < trainerList.size(); i++)
+				cout << trainerList[i] << endl;
+			break;
+		}
+		case 9:
+		{
+			vector<string> ptMemberList = data->getPTMemberData();
+			for (int i = 0; i < ptMemberList.size(); i++)
+				cout << ptMemberList[i] << endl;
+			break;
 		}
 		case 10:
 		{
-			vector<people*> ptMemberList = data->getPTMemberList();
-			for (int i = 0; i < ptMemberList.size(); i++) {
-				cout << ((ptMember*)ptMemberList[i])->dataToString() << endl;
-			}
-			break;
+			string prevID, id, name, phoneNum;
+			int lockerNum;
+			cout << "enter member id : ";
+			cin >> prevID;
+			cout << "enter new member id : ";
+			cin >> id;
+			cout << "enter new member name : ";
+			cin >> name;
+			cout << "enter new member phone number : ";
+			cin >> phoneNum;
+			cout << "enter locker num : ";
+			cin >> lockerNum;
+			data->transferMembership(prevID, id, name, phoneNum, lockerNum);
 		}
 		}
 	}

@@ -16,27 +16,29 @@ int date::getPeriod() {
 }
 
 std::string date::getMembershipEnd(){
-    int duration = 30 * this->period;
+    int duration = 30 * this->period - 1; // 시작일 포함이므로 -1
     int endYear = stoi(this->year);
     int endMonth = stoi(this->month);
     int endDay = stoi(this->day);
     int dayOfMonth[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
-    
     while(duration >= 1){
         if(endYear % 4 == 0 && endYear % 100 != 0) dayOfMonth[2] = 29;
-        else dayOfMonth[2] = 28;
         endDay += duration;
-        if(endDay > dayOfMonth[endMonth]){
+        
+        if (endDay > dayOfMonth[endMonth]) {
             duration = endDay - dayOfMonth[endMonth];
             endMonth++;
-            if(endMonth == 13) {
+            if (endMonth == 13) {
                 endMonth = 1;
                 endYear++;
             }
             endDay = 0;
         }
+        else break;
     }
-    std::string date(std::to_string(endYear) + "-" + std::to_string(endMonth) + "-" + std::to_string(endDay));
+    std::string month = (endMonth / 10) == 0 ? "0" + std::to_string(endMonth) : std::to_string(endMonth);
+    std::string day = (endDay / 10) == 0 ? "0" + std::to_string(endDay) : std::to_string(endDay);
+    std::string date = std::to_string(endYear) + "-" + month + "-" + day;
     return date;
 }
 

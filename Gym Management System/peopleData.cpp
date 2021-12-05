@@ -99,12 +99,45 @@ void peopleData::exportFile(std::string fileName, std::vector<people *> peopleLi
 	}
 }
 
-std::vector<people *> peopleData::getPTMemberList() {
-	return ptMemberList;
+std::vector<std::string> peopleData::getPTMemberData() {
+	std::vector<std::string> ptMemberData;
+	for (int i = 0; i < ptMemberList.size(); i++) {
+		ptMemberData.push_back(((ptMember*)ptMemberList[i])->dataToString());
+	}
+	return ptMemberData;
 }
 
 void peopleData::chargeMember(std::string trainerID, std::string ptMemberID) {
 	for (int i = 0; i < trainerList.size(); i++) {
 		if (trainerList[i]->getID() == trainerID) ((trainer*)trainerList[i])->addPTMember(ptMemberID);
+	}
+}
+
+std::string peopleData::getMembershipEnd(std::string id) {
+	for (int i = 0; i < memberList.size(); i++) {
+		if (memberList[i]->getID() == id) return ((member*)memberList[i])->getMembership()->getMembershipEnd();
+	}
+	for (int i = 0; i < ptMemberList.size(); i++) {
+		if (ptMemberList[i]->getID() == id) return ((ptMember*)ptMemberList[i])->getMembership()->getMembershipEnd();
+	}
+	return "";
+}
+
+std::vector<std::string> peopleData::getTrainerData() {
+	std::vector<std::string> trainerData;
+	for (int i = 0; i < trainerList.size(); i++) {
+		trainerData.push_back(((trainer*)trainerList[i])->dataToString());
+	}
+	return trainerData;
+}
+
+void peopleData::transferMembership(std::string prevID, std::string id, std::string name, std::string phoneNum, int lockerNum) {
+	for (int i = 0; i < memberList.size(); i++) {
+		if(memberList[i]->getID() == prevID) {
+			date *membershipDate = ((member*)memberList[i])->getMembership();
+			memberList.push_back(new member(id, name, phoneNum, membershipDate->getMembershipStart(), membershipDate->getPeriod(), lockerNum));
+			memberList.erase(memberList.begin() + i);
+			break;
+		}
 	}
 }

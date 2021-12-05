@@ -20,5 +20,8 @@ public:
 	void addHealthData(std::string, health *);
 	void addTrainedDate(std::string, std::string);
 	void chargeMember(std::string, std::string);
-	std::vector<people *> getPTMemberList();
+	std::vector<std::string> getTrainerData();
+	std::string getMembershipEnd(std::string);
+	std::vector<std::string> getPTMemberData();
+	void transferMembership(std::string, std::string, std::string, std::string, int);
 };

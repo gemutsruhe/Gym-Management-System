@@ -3,12 +3,12 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
+#include <iostream>
 peopleData::peopleData() {
 
 }
 
-void peopleData::loadFile(std::string fileName) {
+void peopleData::loadFile(std::string fileName, std::vector<people *> *dataList, people *data) {
 	std::ifstream file;
 	file.open(fileName);
 	if (file.is_open()) {
@@ -16,10 +16,7 @@ void peopleData::loadFile(std::string fileName) {
 			std::string line;
 			getline(file, line);
 			if (line == "" || line == "\n") break;
-			if (fileName == "member.txt") memberList.push_back((new member)->parseString(line));
-			else if (fileName == "ptMember.txt") ptMemberList.push_back((new ptMember)->parseString(line));
-			else if (fileName == "staff.txt") staffList.push_back((new staff)->parseString(line));
-			else if (fileName == "trainer.txt") trainerList.push_back((new trainer)->parseString(line));
+			dataList->push_back(data->parseString(line)); // 동적바인딩
 		}
 	}
 	else {
@@ -30,11 +27,22 @@ void peopleData::loadFile(std::string fileName) {
 }
 
 bool peopleData::loadData() {
-	loadFile("member.txt");
-	loadFile("ptMember.txt");
-	loadFile("staff.txt");
-	loadFile("trainer.txt");
+	loadFile("member.txt", &memberList, new member());
+	loadFile("ptMember.txt", &ptMemberList, new ptMember());
+	loadFile("staff.txt", &staffList, new staff());
+	loadFile("trainer.txt", &trainerList, new trainer());
 	return true;
+}
+
+void peopleData::exportFile(std::string fileName, std::vector<people*> peopleList) {
+	std::ofstream file;
+	file.open(fileName, std::ios::out);
+	if (file.is_open()) {
+		int i;
+		for (i = 0; i < peopleList.size(); i++) {
+			file << peopleList[i]->dataToString() << std::endl; // 동적바인딩
+		}
+	}
 }
 
 bool peopleData::exportData() {
@@ -47,17 +55,24 @@ bool peopleData::exportData() {
 
 void peopleData::addMember(std::string id, std::string name, std::string phone_num, std::string membership_start, int period, int lockerNum){
 	member *newMember = new member(id, name, phone_num, membership_start, period, lockerNum);
-	memberList.push_back(newMember);
+	memberList.push_back(newMember); // memberList에 새로운 member 등록
 }
 
-void peopleData::memberToPT(std::string id, std::string trainerID, int ptNum, health *healthData){
+bool peopleData::memberToPT(std::string id, std::string trainerID, int ptNum, health *healthData){
 	for(int i = 0; i < memberList.size(); i++){
-		if((memberList[i])->getID() == id){
+		if((memberList[i])->getID() == id){ // member중에 id가 같은 멤버를 찾아 해당 member를 바탕으로 새로운 ptMember를 만들어 저장 후 member에서 삭제
 			ptMemberList.push_back(new ptMember(((member*)memberList[i]), trainerID, ptNum, healthData));
 			memberList.erase(memberList.begin() + i);
-			break;
+			return true;
 		}
 	}
+}
+
+bool peopleData::chargeMember(std::string trainerID, std::string ptMemberID) {
+	for (int i = 0; i < trainerList.size(); i++) {
+		if (trainerList[i]->getID() == trainerID) ((trainer*)trainerList[i])->addPTMember(ptMemberID);
+	}
+	return true;
 }
 
 void peopleData::addStaff(std::string id, std::string name, std::string phone_num, int salary){
@@ -72,7 +87,7 @@ void peopleData::addTrainer(std::string id, std::string name, std::string phone_
 void peopleData::addHealthData(std::string ptMemberID, health *newHealthData){
 	for(int i = 0; i < ptMemberList.size(); i++){
 		if((ptMemberList[i])->getID() == ptMemberID){
-			((ptMember*)ptMemberList[i])->addNewHealth(newHealthData);
+			((ptMember*)ptMemberList[i])->addNewHealth(newHealthData); // ptMemberList[i]가 people *이므로 캐스팅 후 새로운 healthdata 추가
 		}
 	}
 }
@@ -85,20 +100,6 @@ void peopleData::addTrainedDate(std::string ptMemberID, std::string trainedDate)
 	}
 }
 
-void peopleData::exportFile(std::string fileName, std::vector<people *> peopleList) {
-	std::ofstream file;
-	file.open(fileName, std::ios::out);
-	if (file.is_open()) {
-		int i;
-		for (i = 0; i < peopleList.size(); i++) {
-			if (fileName == "member.txt") file << ((member*)peopleList[i])->dataToString() << std::endl;
-			else if (fileName == "ptMember.txt") file << ((ptMember*)peopleList[i])->dataToString() << std::endl;
-			else if (fileName == "staff.txt") file << ((staff*)peopleList[i])->dataToString() << std::endl;
-			else if (fileName == "trainer.txt") file << ((trainer *)peopleList[i])->dataToString() << std::endl;
-		}
-	}
-}
-
 std::vector<std::string> peopleData::getPTMemberData() {
 	std::vector<std::string> ptMemberData;
 	for (int i = 0; i < ptMemberList.size(); i++) {
@@ -107,13 +108,8 @@ std::vector<std::string> peopleData::getPTMemberData() {
 	return ptMemberData;
 }
 
-void peopleData::chargeMember(std::string trainerID, std::string ptMemberID) {
-	for (int i = 0; i < trainerList.size(); i++) {
-		if (trainerList[i]->getID() == trainerID) ((trainer*)trainerList[i])->addPTMember(ptMemberID);
-	}
-}
 
-std::string peopleData::getMembershipEnd(std::string id) {
+std::string peopleData::getMembershipEnd(std::string id) { // membership은 member와 ptMember 모두 적용되기 때문에 두 List 모두 확인 membership은 date class
 	for (int i = 0; i < memberList.size(); i++) {
 		if (memberList[i]->getID() == id) return ((member*)memberList[i])->getMembership()->getMembershipEnd();
 	}

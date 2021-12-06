@@ -25,12 +25,12 @@ void member::changeLocker(int lockerNum) {
 }
 
 std::string member::dataToString() {
-	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(membership->getPeriod()) + " " + std::to_string(lockerNum);
+	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(membership->getPeriod()) + " " + std::to_string(lockerNum); // 값을 ' '으로 나누어 string으로 반환한다. staff도 동일
 }
 
 people *member::parseString(std::string dataString) {
 	int substrStart = 0;
-	std::vector<std::string> split = (new people())->split(dataString, ' ');
+	std::vector<std::string> split = (new people())->split(dataString, ' '); // 저장된 string 값을 한줄씩 받아와서 split 함수(people에서 상속)로 분리하여 객체 생성하여 return // 다른 class들도 동일
 	return new member(split[0], split[1], split[2], split[3], std::stoi(split[4]),std::stoi(split[5]));
 }
 

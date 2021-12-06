@@ -20,14 +20,13 @@ int main() {
 		cout << "10. transfer membership" << endl;
 		cout << "11. extend membership" << endl;
 		cout << "12. extend pt times" << endl;
-		//cout << 
 		cout << "if input 0, save and exit" << endl;
 		
 		cin >> input;
 		switch(input){
 		case 0:
 		{
-			data->exportData();
+			data->exportData(); // 데이터 내보내기(저장)
 			return 0;
 		}	
 		case 1:
@@ -46,7 +45,7 @@ int main() {
 			cin >> period;
 			cout << "enter locker number : ";
 			cin >> lockerNum; 
-			data->addMember(id, name, phone_num, membership_start, period, lockerNum);
+			data->addMember(id, name, phone_num, membership_start, period, lockerNum); // member 신규 등록
 			break;
 		}
 		case 2:
@@ -62,8 +61,8 @@ int main() {
 			cin >> ptNum;
 			cout << "enter height weight muscle fat : ";
 			cin >> height >> weight >> muscle >> fat;
-			data->memberToPT(memberID, trainerID, ptNum, new health(height, weight, muscle, fat));
-			data->chargeMember(trainerID, memberID);
+			data->memberToPT(memberID, trainerID, ptNum, new health(height, weight, muscle, fat)) && data->chargeMember(trainerID, memberID);
+			//member를 ptMember로 전환 // 전환 성공 시 trainer에게 ptMember 할당
 			break;
 		}
 		case 3:
@@ -78,7 +77,7 @@ int main() {
 			cin >> phone_num;
 			cout << "enter salary : ";
 			cin >> salary;
-			data->addStaff(id, name,phone_num,salary);
+			data->addStaff(id, name,phone_num,salary); // 새로운 staff 등록
 			break;
 		}
 		case 4:
@@ -93,7 +92,7 @@ int main() {
 			cin >> phone_num;
 			cout << "enter salary : ";
 			cin >> salary;
-			data->addTrainer(id, name, phone_num, salary);
+			data->addTrainer(id, name, phone_num, salary); // 새로운 trainer 등록 // staff와 모두 같아 loadData와 같이 사용할 수 있으나 그냥 이렇게 놔두었음
 			break;
 		}
 		case 5:
@@ -104,7 +103,7 @@ int main() {
 			cin >> memberID;
 			cout << "enter height weight muscle fat : ";
 			cin >> height >> weight >> muscle >> fat;
-			data->addHealthData(memberID, new health(height, weight, muscle, fat));
+			data->addHealthData(memberID, new health(height, weight, muscle, fat)); // health data 추가
 			break;
 		}
 		case 6:
@@ -114,7 +113,7 @@ int main() {
 			cin >> id;
 			cout << "enter date : ";
 			cin >> trainedDate;
-			data->addTrainedDate(id, trainedDate);
+			data->addTrainedDate(id, trainedDate); // case 5와 마찬가지로 동작
 			break;
 		}
 		case 7:
@@ -122,25 +121,25 @@ int main() {
 			string id;
 			cout << "enter member id : ";
 			cin >> id;
-			cout << data->getMembershipEnd(id) << endl;
+			cout << data->getMembershipEnd(id) << endl; // member id를 받아 멤버십이 끝나는 날을 출력
 			break;
 		}
 		case 8:
 		{
-			vector<string> trainerList = data->getTrainerData();
+			vector<string> trainerList = data->getTrainerData(); // trainer 목록 출력
 			for (int i = 0; i < trainerList.size(); i++)
 				cout << trainerList[i] << endl;
 			break;
 		}
 		case 9:
 		{
-			vector<string> ptMemberList = data->getPTMemberData();
+			vector<string> ptMemberList = data->getPTMemberData(); // ptMember list 출력 (member list와 staff list 동일해서 생략)
 			for (int i = 0; i < ptMemberList.size(); i++)
 				cout << ptMemberList[i] << endl;
 			break;
 		}
 		case 10:
-		{
+			{
 			string prevID, id, name, phoneNum;
 			int lockerNum;
 			cout << "enter member id : ";
@@ -153,7 +152,7 @@ int main() {
 			cin >> phoneNum;
 			cout << "enter locker num : ";
 			cin >> lockerNum;
-			data->transferMembership(prevID, id, name, phoneNum, lockerNum);
+			data->transferMembership(prevID, id, name, phoneNum, lockerNum); // membership 양도 id, name, phoneNum, lockerNum 변환
 			break;
 		}
 		case 11:
@@ -164,7 +163,7 @@ int main() {
 			cin >> id;
 			cout << "enter extend period : ";
 			cin >> extendPeriod;
-			data->extendMembership(id, extendPeriod);
+			data->extendMembership(id, extendPeriod); // membership 연장
 			break;
 		}
 		case 12:
@@ -175,12 +174,10 @@ int main() {
 			cin >> id;
 			cout << "enter extend pt times : ";
 			cin >> ptNum;
-			data->extendPTNumber(id, ptNum);
+			data->extendPTNumber(id, ptNum); // extend training number
 			break;
 		}
 		}
 	}
-
-	data->exportData();
 	return 0;
 }

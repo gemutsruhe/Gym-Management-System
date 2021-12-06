@@ -55,6 +55,7 @@ std::string ptMember::healthDataToString() {
 
 std::string ptMember::dataToString() {
 	return id + " " + name + " " + phone_num + " " + membership->getMembershipStart() + " " + std::to_string(membership->getPeriod()) + " " + std::to_string(lockerNum) + " " + std::to_string(remainPT) + " " + trainedDateToString() + " " + trainerID + " " + healthDataToString();
+	// 요소들은 ' '으로 나누어 반환하고, vector의 경우는 각각의 값들을 ','로 분리하여 저장한다 trainedToString, healthDataToString 참조 trainer와 동일.
 }
 
 people *ptMember::parseString(std::string dataString) {
@@ -70,7 +71,7 @@ people *ptMember::parseString(std::string dataString) {
 }
 
 void ptMember::addNewHealth(health *recentData) {
-	healthData.push_back(recentData);
+	healthData.push_back(recentData); // vector<health *> 최근 데이터 추가
 }
 
 void ptMember::changeTrainer(std::string trainerID){

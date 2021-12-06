@@ -15,7 +15,7 @@ int date::getPeriod() {
     return this->period;
 }
 
-std::string date::getMembershipEnd(){
+std::string date::getMembershipEnd(){ // duration은 한달을 30일로 계산 return 값 형태는 1900-01-01
     int duration = 30 * this->period - 1; // 시작일 포함이므로 -1
     int endYear = stoi(this->year);
     int endMonth = stoi(this->month);

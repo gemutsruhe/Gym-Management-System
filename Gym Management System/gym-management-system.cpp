@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 	peopleData *data = new peopleData();
-	data->loadData();
+	data->loadData(); // 저장된 데이터 가져오기 // 보기전에 exportData먼저 보시면 이해가 빠를거에요
 	int input;
 	while(true){
 		cout << "1. regist new member" << endl;

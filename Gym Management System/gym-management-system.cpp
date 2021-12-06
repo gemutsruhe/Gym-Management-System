@@ -19,7 +19,7 @@ int main() {
 		cout << "9. show ptMember List" << endl;
 		cout << "10. transfer membership" << endl;
 		cout << "11. extend membership" << endl;
-		cout << "12. extend pt times";
+		cout << "12. extend pt times" << endl;
 		//cout << 
 		cout << "if input 0, save and exit" << endl;
 		
@@ -154,6 +154,7 @@ int main() {
 			cout << "enter locker num : ";
 			cin >> lockerNum;
 			data->transferMembership(prevID, id, name, phoneNum, lockerNum);
+			break;
 		}
 		case 11:
 		{
@@ -164,6 +165,7 @@ int main() {
 			cout << "enter extend period : ";
 			cin >> extendPeriod;
 			data->extendMembership(id, extendPeriod);
+			break;
 		}
 		case 12:
 		{
@@ -174,6 +176,7 @@ int main() {
 			cout << "enter extend pt times : ";
 			cin >> ptNum;
 			data->extendPTNumber(id, ptNum);
+			break;
 		}
 		}
 	}

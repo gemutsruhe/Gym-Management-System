@@ -17,7 +17,7 @@ member::member(std::string id, std::string name, std::string phone_num, std::str
 	this->lockerNum = lockerNum;
 }
 void member::extendMembership(int month) {
-	this->membership;
+	this->membership->extendPeriod(month);
 }
 
 void member::changeLocker(int lockerNum) {

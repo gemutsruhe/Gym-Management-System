@@ -79,10 +79,11 @@ void ptMember::changeTrainer(std::string trainerID){
 
 void ptMember::addTrainedDate(std::string trained) {
 	trainedDate.push_back(trained);
+	remainPT--;
 }
 
-void ptMember::extendPT(int) {
-
+void ptMember::extendPT(int ptNum) {
+	remainPT += ptNum;
 }
 
 std::string ptMember::getID() {

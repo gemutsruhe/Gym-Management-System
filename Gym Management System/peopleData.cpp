@@ -141,3 +141,27 @@ void peopleData::transferMembership(std::string prevID, std::string id, std::str
 		}
 	}
 }
+
+void peopleData::extendMembership(std::string id, int extendPeriod){
+	for(int i = 0; i < memberList.size(); i++){
+		if(memberList[i]->getID() == id){
+			((member *)memberList[i])->extendMembership(extendPeriod);
+			return ; 
+		}
+	}
+	for(int i = 0; i < ptMemberList.size(); i++){
+		if(ptMemberList[i]->getID() == id){
+			((ptMember *)ptMemberList[i])->extendMembership(extendPeriod);
+			return ;
+		}
+	}
+}
+
+void peopleData::extendPTNumber(std::string id, int ptNum){
+	for(int i = 0; i < ptMemberList.size(); i++){
+		if(ptMemberList[i]->getID() == id){
+			((ptMember *)ptMemberList[i])->extendPT(ptNum);
+			return ;
+		}
+	}
+}

@@ -24,4 +24,6 @@ public:
 	std::string getMembershipEnd(std::string);
 	std::vector<std::string> getPTMemberData();
 	void transferMembership(std::string, std::string, std::string, std::string, int);
+	void extendMembership(std::string, int);
+	void extendPTNumber(std::string, int);
 };

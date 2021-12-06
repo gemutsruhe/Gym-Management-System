@@ -18,8 +18,10 @@ int main() {
 		cout << "8. show trainer list" << endl;
 		cout << "9. show ptMember List" << endl;
 		cout << "10. transfer membership" << endl;
+		cout << "11. extend membership" << endl;
+		cout << "12. extend pt times";
 		//cout << 
-		cout << "if input 0, save, exit" << endl;
+		cout << "if input 0, save and exit" << endl;
 		
 		cin >> input;
 		switch(input){
@@ -30,8 +32,8 @@ int main() {
 		}	
 		case 1:
 		{
-			string id = "", name = "", phone_num(""), membership_start("");
-			int period = 0, lockerNum = 0;
+			string id, name, phone_num, membership_start;
+			int period, lockerNum;
 			cout << "enter id : ";
 			cin >> id;
 			cout << "enter name : ";
@@ -49,9 +51,9 @@ int main() {
 		}
 		case 2:
 		{
-			int ptNum = 0;
-			float height = 0, weight = 0, muscle = 0, fat = 0;
-			string memberID = "", trainerID = "";
+			int ptNum;
+			float height, weight, muscle, fat;
+			string memberID, trainerID;
 			cout << "enter memberID : ";
 			cin >> memberID;
 			cout << "enter trainerID : ";
@@ -67,7 +69,7 @@ int main() {
 		case 3:
 		{
 			string id, name, phone_num;
-			int salary = 0;
+			int salary;
 			cout << "enter id : ";
 			cin >> id;
 			cout << "enter name : ";
@@ -82,7 +84,7 @@ int main() {
 		case 4:
 		{
 			string id, name, phone_num;
-			int salary = 0;
+			int salary;
 			cout << "enter id : ";
 			cin >> id;
 			cout << "enter trainer name : ";
@@ -96,8 +98,8 @@ int main() {
 		}
 		case 5:
 		{
-			string memberID = "";
-			float height = 0, weight = 0, muscle = 0, fat = 0;
+			string memberID;
+			float height, weight, muscle, fat;
 			cout << "enter ptMemberID : ";
 			cin >> memberID;
 			cout << "enter height weight muscle fat : ";
@@ -152,6 +154,26 @@ int main() {
 			cout << "enter locker num : ";
 			cin >> lockerNum;
 			data->transferMembership(prevID, id, name, phoneNum, lockerNum);
+		}
+		case 11:
+		{
+			string id;
+			int extendPeriod;
+			cout << "enter member id : ";
+			cin >> id;
+			cout << "enter extend period : ";
+			cin >> extendPeriod;
+			data->extendMembership(id, extendPeriod);
+		}
+		case 12:
+		{
+			string id;
+			int ptNum;
+			cout << "enter id : ";
+			cin >> id;
+			cout << "enter extend pt times : ";
+			cin >> ptNum;
+			data->extendPTNumber(id, ptNum);
 		}
 		}
 	}
